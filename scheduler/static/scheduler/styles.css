@@ -1,0 +1,69 @@
+:root {
+  --theme: #003e52;
+  --error: #ef483e;
+  --success: #00B189;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 17px;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: var(--theme);
+  line-height: 1.5rem;
+  margin: 0;
+  padding: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+div.event {
+  border: 1px solid var(--theme);
+  border-radius: 10px;
+  padding: 1rem;
+  margin: 1rem;
+}
+
+span.time {
+  background-color: var(--theme);
+  color: white;
+  font-weight: bold;
+  font-size: 0.8rem;
+  padding: 0.5rem;
+  border-radius: 10px;
+}
+
+div.error, div.success,
+ul.errorlist.nonfield li {
+  width: fit-content;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  list-style: none;
+}
+
+div.error,
+ul.errorlist.nonfield li {
+  border: 2px solid var(--error);
+}
+
+div.success {
+  border: 2px solid var(--success);
+}
+
+input {
+  border: 1px solid var(--theme);
+  padding: 0.5rem;
+  margin: 0.5rem;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  background-color: var(--success);
+  font-weight: bold;
+  color: white;
+  border: none;
+}

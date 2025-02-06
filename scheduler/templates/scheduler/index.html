@@ -1,0 +1,49 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Calendar</title>
+  <link rel="stylesheet" href="{% static 'scheduler/styles.css' %}">
+</head>
+<body>
+  <h1>Scheduler</h1>
+  {% if messages %}
+    <div class="messagelist">
+      {% for message in messages %}
+        <div class="{{ message.level_tag }}">{{ message }}</li>
+      {% endfor %}
+    </div>
+  {% endif %}
+  <h2>Scheduled Events</h2>
+  {% for event in events %}
+    <div class="event"><span class="time">{{ event.start|date:"M d, Y P"  }}</span> {{ event.event_series.name }} ({{ event.start|timesince:event.end }})</div>
+  {% endfor %}
+  <h2>Add an Event</h2>
+  <form action="/schedule/" method="post">
+    {% csrf_token %}
+    {{ event_form }}
+    {{ series_form }}
+    <div>
+      <input type="checkbox" name="rep" id="rep" onchange="toggle_reps()">
+      <label for="rep">This event should repeat</label>
+    </div>
+    <input type="submit" value="Add event">
+  </form>
+  <script type="text/javascript">
+    repFields = document.querySelectorAll('label[for^="id_repeating_"], input[name^="repeating_"]')
+    repFields.forEach( function(el) {
+      el.hidden = true;
+    })
+
+    function toggle_reps() {
+      repFields.forEach( function(el) {
+        el.hidden = !el.hidden;
+      })
+    }
+
+    function set_min_end(el) {
+      document.getElementById("id_end").setAttribute("min", el.value)
+    }
+  </script>
+</body>
+</html>
